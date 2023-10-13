@@ -1,0 +1,15 @@
+import pbi4 as pb
+
+io=pb.IO(config_file = 'config.json',verbose = True, scriptmode = True)
+params=io.read_params()
+pos = io.read_catalogues()
+density = pb.DENSITIES(params)
+npart,dcl = density.assign_grid(pos)
+dcl = density.compute_density(npart, dcl)
+dcl2,dcl4 = density.compute_density_multipoles(dcl)
+ms = pb.MEASUREMENTS(params)
+ps = ms.powerspectrum(npart,dcl,dcl2,dcl4)
+counts = ms.triangle_counts()
+bs = ms.bispectrum(npart,counts,dcl,dcl2,dcl4)
+ms.save_powerspectrum(ps)
+ms.save_bispectrum(bs)

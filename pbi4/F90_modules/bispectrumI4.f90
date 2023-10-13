@@ -177,7 +177,7 @@ subroutine measure_bk(nbins,grid,kbin,kcenter,iopen,kf,npool,itot,npart,counts,d
                 bout(4,m) = pow(l)
                 bout(5,m) = pow(j)
                 bout(6,m) = pow(i)
-                bout(7,m) = kf3*sum/counts(m)
+                bout(7,m) = kf3*sum/counts(m) + bispSN
                 bout(8,m) = bispSN
                 bout(9,m) = real(counts(m)/dble(gridD))
                 call flush()
@@ -486,13 +486,14 @@ subroutine measure_bk_multipoles(nbins,grid,kbin,kcenter,iopen,kf,npool,itot,npa
                     sum2 = sum2 + mapk(n,i)*mapk(n,j)*mapk2(n,l)      ! change to  mapk2(n,i)*mapk(n,j)*mapk(n,l) if you want the angle wrt shorter k
                     sum4 = sum4 + mapk(n,i)*mapk(n,j)*mapk4(n,l)      ! change to  mapk4(n,i)*mapk(n,j)*mapk(n,l) if you want the angle wrt shorter k
                 enddo
+                bispSN=(pow(i)+pow(j)+pow(l))*powSN+powSN2
                 bout(1,m) = tk(l)
                 bout(2,m) = tk(j)
                 bout(3,m) = tk(i)
                 bout(4,m) = pow(l)
                 bout(5,m) = pow(j)
                 bout(6,m) = pow(i)
-                bout(7,m) = kf3*sum/counts(m)
+                bout(7,m) = kf3*sum/counts(m) + bispSN
                 bout(8,m) = bispSN
                 bout(9,m) = real(counts(m)/dble(gridD))
                 bout(10,m) = 5*kf3*sum2/counts(m)

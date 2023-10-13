@@ -19,11 +19,6 @@ class NumpyArrayEncoder(JSONEncoder):
             return obj.tolist()
         return JSONEncoder.default(self, obj)
     
-class Store_as_array(argparse._StoreAction):
-    def __call__(self, parser, namespace, values, option_string=None):
-        values = np.array(values)
-        return super().__call__(parser, namespace, values, option_string)
-    
 class IO:
     '''
     This class organises input parameters, output and reading files.
@@ -507,7 +502,7 @@ class MEASUREMENTS:
                            ('Pk1',np.float32),
                            ('Pk2',np.float32),
                            ('Pk3',np.float32),
-                           ('B0',np.float32),
+                           ('B0+BSN',np.float32),
                            ('BSN',np.float32),
                            ('Ntr',np.float32)]
             print('Computing real space bispectrum')
@@ -522,7 +517,7 @@ class MEASUREMENTS:
             output['Pk1'] = bout[3]
             output['Pk2'] = bout[4]
             output['Pk3'] = bout[5]
-            output['B0'] = bout[6]
+            output['B0+BSN'] = bout[6]
             output['BSN'] = bout[7]
             output['Ntr'] = bout[8] 
         else:
@@ -532,7 +527,7 @@ class MEASUREMENTS:
                            ('Pk1',np.float32),
                            ('Pk2',np.float32),
                            ('Pk3',np.float32),
-                           ('B0',np.float32),
+                           ('B0+BSN',np.float32),
                            ('BSN',np.float32),
                            ('Ntr',np.float32),
                            ('B2',np.float32),
@@ -549,7 +544,7 @@ class MEASUREMENTS:
             output['Pk1'] = bout[3]
             output['Pk2'] = bout[4]
             output['Pk3'] = bout[5]
-            output['B0'] = bout[6]
+            output['B0+BSN'] = bout[6]
             output['BSN'] = bout[7]
             output['Ntr'] = bout[8] 
             output['B2'] = bout[9]
@@ -586,14 +581,14 @@ class MEASUREMENTS:
             np.savetxt(params['bs_outfile'], np.array([ bout['k1'], bout['k2'],bout['k3'], bout['B0'], bout['Ntr']]).T, \
                        fmt=('%d','%d','%d','%0.8e','%0.8e'), header = header)
         elif params['multipoles'] == 0:
-            header = 'k1/kF k2/kF k3/kF P(k1) P(k2)       P(k3)       B0        BSN    N_tr\n'
+            header = 'k1/kF k2/kF k3/kF P(k1) P(k2)       P(k3)       B0+BSN        BSN    N_tr\n'
             np.savetxt(params['bs_outfile'], np.array([ bout['k1'], bout['k2'],bout['k3'], bout['Pk1'], bout['Pk2'], bout['Pk3'],\
-                                            bout['B0'],bout['BSN'], bout['Ntr']]).T, \
+                                            bout['B0+BSN'],bout['BSN'], bout['Ntr']]).T, \
                        fmt=('%d','%d','%d','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e'), header = header)
         else:
-            header = 'k1/kF k2/kF k3/kF P(k1) P(k2)       P(k3)       B0        BSN    N_tr    B2      B4\n'
+            header = 'k1/kF k2/kF k3/kF P(k1) P(k2)       P(k3)       B0+BSN        BSN    N_tr    B2      B4\n'
             np.savetxt(params['bs_outfile'], np.array([ bout['k1'], bout['k2'],bout['k3'], bout['Pk1'], bout['Pk2'], bout['Pk3'],\
-                                            bout['B0'],bout['BSN'], bout['Ntr'], bout['B2'],bout['B4']]).T, \
+                                            bout['B0+BSN'],bout['BSN'], bout['Ntr'], bout['B2'],bout['B4']]).T, \
                        fmt=('%d','%d','%d','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%0.8e'), header = header)
         print('Done.\n')
         return

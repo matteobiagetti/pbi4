@@ -16,3 +16,9 @@ LOSy=2
 LOSz=1
 
 python test.py --grid $GRID --los ${LOSx} ${LOSy} ${LOSz}
+
+# How to put to false a parameter in the config file:
+
+MULTIPOLES=''   #leave blank to assign the variable to False. For True, you can write "True".
+
+python test.py --multipoles $MULTIPOLES

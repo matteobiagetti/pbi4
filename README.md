@@ -26,7 +26,7 @@ Once these are installed, you need to link FFTW libraries in the setup file. To 
  
  `python -m pip install .` 
  
- The instalation was also tested within `conda` and `pyenv` virtual environments.
+ The installation was also tested within `conda` and `pyenv` virtual environments.
 
  ### Running
 

@@ -58,19 +58,19 @@ class IO:
         parser.add_argument('--interpolation', type = int, help = 'interpolation order. \
                                                                         0: direct summation, \
                                                                         1-4: first to fourth order with interlacing')
-        parser.add_argument('--interlacing', type = bool, help = 'Whether to apply interlacing')
+        parser.add_argument('--interlacing', action=argparse.BooleanOptionalAction, help = 'Whether to apply interlacing')
         parser.add_argument('--kbin', type = float, help = 'bin size in units of the fundamental frequency (linear binning)')
         parser.add_argument('--kcenter', type = float, help = 'centre of the first bin in units of the fundamental frequency')
-        parser.add_argument('--iopen', type = bool, help = 'Whether to compute open triangles')
+        parser.add_argument('--iopen', action=argparse.BooleanOptionalAction, help = 'Whether to compute open triangles')
         parser.add_argument('--om', type = float, help = 'matter density')
         parser.add_argument('--ol', type = float, help = 'dark energy density')
         parser.add_argument('--z', type = float, help = 'redshift of the catalog')
-        parser.add_argument('--multipoles', type = bool, help = 'Whether to compute multipoles up to L=4 included')
+        parser.add_argument('--multipoles', action=argparse.BooleanOptionalAction, help = 'Whether to compute multipoles up to L=4 included')
         parser.add_argument('--los', nargs='+', type = float, help = 'Line Of Sight vector. Usage: --los X Y Z, where LOS=[X,Y,Z].')
-        parser.add_argument('--cross', type = bool, help = 'Whether to compute cross power spectra/bispectra')
+        parser.add_argument('--cross', action=argparse.BooleanOptionalAction, help = 'Whether to compute cross power spectra/bispectra')
         parser.add_argument('--cfile', type = str, help = 'Stem of the triangle counts file')
         parser.add_argument('--npool', type = int, help = 'Number of threads for parallelized computation of FFTs')
-        parser.add_argument('--savedensity', type = bool, help = 'Whether to save density')             
+        parser.add_argument('--savedensity', action=argparse.BooleanOptionalAction, help = 'Whether to save density')             
 
         args = parser.parse_args()
 

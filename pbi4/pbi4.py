@@ -152,7 +152,7 @@ class IO:
                 print('Displacing along the LOS: (%.1f,%.1f,%.1f)'%(params['los'][0],params['los'][1],params['los'][2]))
                 Vel = readgadget.read_field(params['ifile'], "VEL ", ptype)     #peculiar velocities in km/s
                 pos[:] += Vel[:]*params['los']/params['Hz']*(1.+params['z'])    #note that readgadget already multiplies by the infamous sqrt(a)  
-        if params['cat'] == 'rockstar':         
+        if params['cat'] == 'eos':         
             print('Reading EOS Rockstar halos.\n')
             print('FILE: %s\n' %params['ifile'])
             mycat = np.load(params['ifile'])

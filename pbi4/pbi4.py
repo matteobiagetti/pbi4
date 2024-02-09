@@ -95,7 +95,7 @@ class IO:
             params = self.params
         params['los']  = np.array(params['los'])
         der_pars = {'dk' : params['kbin'] * 2. * np.pi / params['box'],
-                    'nbins_ps' : int(params['grid']/2./params['kbin']),
+                    'nbins_ps' : floor((params['grid']/2+params['kbin']-params['kcenter'])/params['kbin']),
                     'nbins_bisp' : floor((params['grid']/3+params['kbin']-params['kcenter'])/params['kbin']),
                     'kf' : 2.*np.pi/params['box'],
                     'kN' : 2*np.pi/params['box']*params['grid']/2.,

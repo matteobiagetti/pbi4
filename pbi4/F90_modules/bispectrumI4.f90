@@ -2,10 +2,10 @@ subroutine measure_bk(nbins,grid,kbin,kcenter,iopen,kf,npool,itot,npart,counts,d
 
     include 'fftw3.f'
 
-    integer, intent(in) :: nbins,kbin,kcenter,npool,grid
+    integer, intent(in) :: nbins,npool,grid
     integer(kind=8), intent(in) :: npart,itot
     logical, intent(in) :: iopen
-    real, intent(in) :: kf, counts(:)
+    real, intent(in) :: kf,kbin,kcenter, counts(:)
     complex(kind=8), intent(in) :: dcl(:,:,:)
     real(kind=8), intent(out) :: bout(9,itot)
 
@@ -201,10 +201,10 @@ subroutine measure_bk_multipoles(nbins,grid,kbin,kcenter,iopen,kf,npool,itot,npa
 
     include 'fftw3.f'
 
-    integer, intent(in) :: nbins,kbin,kcenter,npool,grid
+    integer, intent(in) :: nbins,npool,grid
     integer(kind=8), intent(in) :: npart,itot
     logical, intent(in) :: iopen
-    real, intent(in) :: kf,counts(:)
+    real, intent(in) :: kf,kbin,kcenter,counts(:)
     complex(kind=8), intent(in) :: dcl(:,:,:),dcl2(:,:,:),dcl4(:,:,:)
     real(kind=8), intent(out) :: bout(11,itot)
 
@@ -519,10 +519,10 @@ subroutine measure_bk_cross(nbins,grid,kbin,kcenter,iopen,kf,npool,itot,npart,co
 
     include 'fftw3.f'
 
-    integer, intent(in) :: nbins,kbin,kcenter,npool,grid
+    integer, intent(in) :: nbins,npool,grid
     integer(kind=8), intent(in) :: npart,itot
     logical, intent(in) :: iopen
-    real, intent(in) :: kf,counts(:)
+    real, intent(in) :: kf,kbin,kcenter,counts(:)
     complex(kind=8), intent(in) :: dcl1(:,:,:),dcl2(:,:,:)
     real(kind=8), intent(out) :: bout(5,itot)
 
@@ -764,7 +764,8 @@ subroutine count_triangles(nbins,grid,kbin,kcenter,iopen,cross,npool,itot,counts
 
       include 'fftw3.f'
 
-      integer, intent(in) :: nbins,grid,kbin,kcenter,npool
+      integer, intent(in) :: nbins,grid,npool
+      real, intent(in) :: kbin, kcenter
       integer(kind=8), intent(in) :: itot
       logical, intent(in) :: iopen,cross
       real(kind=8), intent(out) :: counts(itot)

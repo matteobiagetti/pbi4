@@ -11,3 +11,4 @@
 
 # Ignore macOS system files
 .DS_Store
+setup-eos.py

@@ -14,7 +14,7 @@ ext2 = Extension(name='bispectrumI4',
                 )
 
 setup(name="PBI4",
-      version="1.0",
+      version="1.1",
       package_dir={"": "pbi4"},
       packages=find_packages(),
       ext_modules=[ext1, ext2])

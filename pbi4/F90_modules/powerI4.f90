@@ -509,8 +509,8 @@ end subroutine
 
 subroutine measure_pk(grid, box, kbin, kcenter, nbins, dcl1, dcl2, pout)
 
-    integer, intent(in) :: grid, kbin, kcenter, nbins
-    real, intent(in) :: box
+    integer, intent(in) :: grid, nbins
+    real, intent(in) :: box, kbin, kcenter
     complex(kind=8), intent(in) :: dcl1(:,:,:), dcl2(:,:,:)
     real(kind=8), intent(out) :: pout(5,nbins)
     integer :: ix, iy, iz, ikx, iky, ikz, icx, icy, icz, imk, Nx, Ny, Nz
@@ -595,8 +595,8 @@ end subroutine
 
 subroutine measure_pk_multipoles(grid, box, kbin, kcenter, nbins, dcl, dcl2, dcl4, pout)
 
-   integer, intent(in) :: grid, kbin, kcenter, nbins
-   real, intent(in) :: box
+   integer, intent(in) :: grid, nbins
+   real, intent(in) :: box, kbin, kcenter
    complex(kind=8), intent(in) :: dcl(:,:,:), dcl2(:,:,:), dcl4(:,:,:)
    real(kind=8), intent(out) :: pout(5,nbins)
    integer :: ix, iy, iz, icx,icy,icz,ikx,iky,ikz,imk, Nx, Ny, Nz

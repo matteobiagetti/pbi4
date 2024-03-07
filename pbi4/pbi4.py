@@ -419,7 +419,7 @@ class MEASUREMENTS:
             params = self.params
         output_type = [('k',np.float32),
                        ('avgk',np.float32),
-                       ('P0',np.float32),
+                       ('P0+PSN',np.float32),
                        ('P2',np.float32),
                        ('P4',np.float32),
                        ('Nmodes',np.float32),
@@ -437,7 +437,7 @@ class MEASUREMENTS:
             print('Computing redshift space power spectrum')
             pout = measure_pk_multipoles(params['grid'], params['box'], params['kbin'], \
                                          params['kcenter'],params['nbins_ps'],dcl, dcl2,dcl4)
-            output['P0'] = pout[1]
+            output['P0+PSN'] = pout[1]
             output['P2'] = pout[2]
             output['P4'] = pout[3]
             output['Nmodes'] = pout[4]
@@ -452,7 +452,7 @@ class MEASUREMENTS:
                 dcl2 = dcl
             pout = measure_pk(params['grid'], params['box'], params['kbin'], \
                               params['kcenter'], params['nbins_ps'],dcl, dcl2)
-            output['P0'] = pout[1]
+            output['P0+PSN'] = pout[1]
             output['Nmodes'] = pout[2]
         output['k'] = params['kvec']
         output['avgk'] = pout[0]
@@ -557,8 +557,8 @@ class MEASUREMENTS:
             params = self.params
         print('Saving power spectrum...\n')
         print('FILE: %s' %params['ps_outfile'])
-        header = 'k     avgk     P0      P2      P4     Nmodes    PSN\n'
-        np.savetxt(params['ps_outfile'], np.array([ pout['k'], pout['avgk'], pout['P0'], pout['P2'],pout['P4'],pout['Nmodes'],pout['PSN']]).T, fmt=('%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%d','%0.8e'), header = header)
+        header = 'k     avgk     P0+PSN      P2      P4     Nmodes    PSN\n'
+        np.savetxt(params['ps_outfile'], np.array([ pout['k'], pout['avgk'], pout['P0+PSN'], pout['P2'],pout['P4'],pout['Nmodes'],pout['PSN']]).T, fmt=('%0.8e','%0.8e','%0.8e','%0.8e','%0.8e','%d','%0.8e'), header = header)
         print('Done.')
         return
 
